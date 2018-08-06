@@ -1,30 +1,28 @@
 package google.co.id.simperecycleview;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> {
     private List<MovieModel> moviesList;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView movieName;
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView movieName;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
             movieName = itemView.findViewById(R.id.tv_movie);
         }
     }
 
-    public MainAdapter(List<MovieModel> moviesList) {
+    MainAdapter(List<MovieModel> moviesList) {
         this.moviesList = moviesList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -37,7 +35,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, int i) {
-        MovieModel movie = new MovieModel();
+        MovieModel movie = moviesList.get(i);
         myViewHolder.movieName.setText(movie.getTitle());
     }
 

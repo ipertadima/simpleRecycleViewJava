@@ -10,7 +10,7 @@ public class MovieModel {
     }
 
     public MovieModel(String title, String genre, String year) {
-        this.setTitle(title);
+        this.title = title;
         this.setGenre(genre);
         this.setYear(year);
     }

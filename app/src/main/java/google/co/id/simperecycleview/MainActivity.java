@@ -3,8 +3,8 @@ package google.co.id.simperecycleview;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindView();
-        initRecycle();
         prepareMovieData();
+        initRecycle();
     }
 
     private void bindView() {
@@ -30,22 +30,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecycle() {
         mAdapter = new MainAdapter(movieList);
+        recyclerView.setAdapter(mAdapter);
+
         //Untuk Linear Layout Vertical
-        // RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        //RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 
         //Untuk Linear Layout Horizontal
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
 
         //Untuk Grid Layout
-        // RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
-        // RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
+        //RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
+       // RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
-
-        //util snap helper
-        PagerSnapHelper snapHelper = new PagerSnapHelper();
-        snapHelper.attachToRecyclerView(recyclerView);
     }
 
     private void prepareMovieData() {
@@ -96,7 +92,5 @@ public class MainActivity extends AppCompatActivity {
 
         movie = new MovieModel("Guardians of the Galaxy", "Science Fiction & Fantasy", "2014");
         movieList.add(movie);
-
-        mAdapter.notifyDataSetChanged();
     }
 }
